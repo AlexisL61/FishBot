@@ -1,0 +1,18 @@
+{
+	"banniere-box":{
+		"name":"Box de bannière",
+		"price":10000,
+		"money-type":"money",
+		"rarity-coef":{
+			"common":50,
+			"uncommon":25,
+			"rare":10,
+			"epic":4,
+			"legendary":1
+		},
+		"type":"banniere",
+		"items":[
+			"default"
+		]
+	}
+}

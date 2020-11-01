@@ -1,0 +1,58 @@
+{
+	"rare-fish-collector1":{
+		"title":"Collecte d'un poisson rare",
+		"description":"Collectez un poisson rare",
+		"type":"rarityToCollect",
+		"tickets":20,
+		"numberToCollect":1,
+		"rarityToCollect":"rare"
+	},
+	"rare-fish-collector2":{
+		"title":"Collecte de poissons rare",
+		"description":"Collectez deux poissons rare",
+		"type":"rarityToCollect",
+		"tickets":50,
+		"numberToCollect":2,
+		"rarityToCollect":"rare"
+	},
+	"uncommon-fish-collector3":{
+		"title":"Collecte de poissons atypique",
+		"description":"Collectez trois poissons atypiques",
+		"type":"rarityToCollect",
+		"tickets":40,
+		"numberToCollect":3,
+		"rarityToCollect":"atypique"
+	},
+	"uncommon-fish-collector2":{
+		"title":"Collecte de poissons atypique",
+		"description":"Collectez deux poissons atypiques",
+		"type":"rarityToCollect",
+		"tickets":20,
+		"numberToCollect":2,
+		"rarityToCollect":"atypique"
+	},
+	"common-fish-collector1":{
+		"title":"Collecte d'un poisson commun",
+		"description":"Collectez un poisson commun",
+		"type":"rarityToCollect",
+		"tickets":5,
+		"numberToCollect":1,
+		"rarityToCollect":"commun"
+	},
+	"common-fish-collector2":{
+		"title":"Collecte de poissons commun",
+		"description":"Collectez deux poissons commun",
+		"type":"rarityToCollect",
+		"tickets":10,
+		"numberToCollect":2,
+		"rarityToCollect":"commun"
+	},
+	"common-fish-collector5":{
+		"title":"Collecte de poissons commun",
+		"description":"Collectez cinq poissons commun",
+		"type":"rarityToCollect",
+		"tickets":35,
+		"numberToCollect":5,
+		"rarityToCollect":"commun"
+	}
+}

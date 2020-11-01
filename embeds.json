@@ -1,0 +1,186 @@
+{
+	"changingFishChannel":{
+		"loading":
+		{
+			"title":"Changement du salon en cours",
+			"description":"Enregistrement du salon en cours...",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"success":
+		{
+			"title":"Salon changé avec succès",
+			"description":"Le salon a bien été changé avec succès!"
+		},
+		"error":{
+			"title":"Une erreur est survenue",
+			"description":"Une erreur est survenue lors du changement du salon, veuillez rééssayer"
+		},
+		"permission_error":{
+			"title":"Accès refusé",
+			"description":"Vous n'avez pas accès à cette commande. Vous devez être **administrateur** de ce serveur."
+		}
+	},
+	"waitingFish":{
+		"pre_peche":{
+			"title":"Poisson",
+			"description":"Vous voyez un poisson au loin qui se dirige vers vous... Préparez votre canne à pêche!",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"in_water":{
+			"title":"Un poisson approche",
+			"description":"Un <size> est assez proche, il est possible de l'attraper! Attrapez le avec 🐟"
+		},
+		"fish_gone":{
+			"title":"Le poisson est parti...",
+			"description":"Le <size> est parti..."
+		}
+	},
+	"pecheFish":{
+		"launch":{
+			"title":"Poisson",
+			"description":"Vous lancez votre ligne"
+		},
+		"fish_approach":{
+			"title":"Poisson",
+			"description":"Le poisson s'approche"
+		},
+		"fish_mord":{
+			"title":"Poisson",
+			"description":"Le poisson mord! Tirez! 🎣"
+		},
+		"fish_caught":{
+				"title":"Poisson",
+				"description":"Bien joué <user>\n\nVous l'avez eu! Voici votre prise: **<fishName>** de qualité <fishQuality>.\n\nIl coute **<fishPrice>** 🪙 sur le marché du poisson\n\n<questText>-<caughtText>",
+				"thumbnail":{}
+		},
+		"too_late":{
+			"title":"Poisson",
+			"description":"Trop tard! Le poisson est parti"
+		},
+		"too_fast":{
+			"title":"Poisson",
+			"description":"Trop tot! Vous avez fait peur au poisson!"
+		}
+	},
+	"aquarium":{
+		"loading":{
+			"title":"Aquarium",
+			"description":"Chargement de votre aquarium...",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"loaded":{
+			"title":"Aquarium",
+			"description":""
+		}
+	},
+	"profil":{
+		"loading":{
+			"title":"Profil",
+			"description":"Chargement de votre profil...",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"loaded":{
+			"title":"Profil",
+			"description":""
+		}
+	},
+	"bibliotheque":{
+		"loading":{
+			"title":"Bibliothèque",
+			"description":"Chargement de votre bibliothèque...",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"loaded":{
+			"title":"Bibliothèque",
+			"description":""
+		}
+	},
+	"fishInfo":{
+		"invalid_use":{
+			"title":"Info",
+			"description":"Utilisation de la commande invalide. Veuillez l'utiliser comme ceci: f!info <numéro du poisson dans votre bibliothèque>"
+		},
+		"invalid_number":{
+			"title":"Info",
+			"description":"Le nombre donné doit être un nombre compris entre 1 et 80"
+		},
+		"success":{
+			"title":"Info",
+			"fields":[
+				{
+					"name":"Informations générales",
+					"value":"**Nom du poisson**: <fishName>\n**Prix**: <fishPrice>🪙\n**Taille**: <fishSize>"
+				},
+				{
+					"name":"Détails",
+					"value":"**Lieu(x) de pèche**: <fishLocation>\n**Message de prise**: <fishCaughtText>"
+				}
+			]
+		},
+		"not_discover":{
+			"title":"Info",
+			"fields":[
+				{
+					"name":"Informations générales",
+					"value":"**Nom du poisson**: ???\n**Prix**: ???🪙\n**Taille**: ???"
+				},
+				{
+					"name":"Détails",
+					"value":"**Lieux de pèche**: ???\n**Message de prise**: ???"
+				}
+			]
+		}
+	},
+	"sellFish":{
+		"main_embed":{
+			"title":"Vente de poissons",
+			"description":""
+		},
+		"wrong_number":{
+			"title":"Vente de poissons",
+			"description":"Ce nombre n'est pas un nombre correspondant à un poisson"
+		},
+		"success":{
+			"title":"Vente de poissons",
+			"description":"Vous avez bien vendu ces poissons: <fishSold>\n\nVous avez donc gagné un total de <moneyGot>🪙"
+		}
+	},
+	"quest":{
+		"loading":{
+			"title":"Quêtes",
+			"description":"Chargement de vos quêtes...",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"loaded":{
+			"title":"Quêtes",
+			"description":"Voici vos quêtes. Lorsque vous terminez une quête, les poissons correspondant à la quête sont échangés.",
+			"fields":[
+					
+			]
+		},
+		"no-quest":{
+			"title":"Quêtes",
+			"description":"Vous avez aucune quête, péchez des poissons pour en recevoir!"
+		},
+		"finish":{
+			"title":"Quêtes terminées",
+			"description":"Vous venez de terminer une ou plusieurs quêtes. Vous avez reçu **<tickets>**🎟️"
+		},
+		"error":{
+			"title":"Erreur",
+			"description":"Attention! Un petit problème est survenu... Il semblerait que votre quête n'est jamais existé... Bizarre non? Pourquoi pas rééssayer?"
+		}
+	}
+}

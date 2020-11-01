@@ -1,0 +1,13 @@
+{
+	"default":{
+		"rarity":"common",
+		"name":{"fr":"Défaut","en":"Default"},
+		"color_available":[
+			"default"
+		],
+		"image_size":{"width":800,"height":449},
+		"color":{
+			"default":"https://wallpapercave.com/wp/wp4462550.png"
+		}
+	}
+}
