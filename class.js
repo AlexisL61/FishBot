@@ -1,4 +1,4 @@
-var fishTable,playerList,fishPecheList,serverList,waitingFishList,client,bibliothequeFishList,questList
+var fishTable,playerList,fishPecheList,serverList,waitingFishList,client,bibliothequeFishList,questList,banniereList
 
 var playerDataAvailable = [{"name":"id"},{"name":"money"},{"name":"tickets"}]
 
@@ -119,6 +119,9 @@ class Player{
 		}
 		return false
 	}
+	async getBanniere(){
+		var bannieres = await banniereList.find({"owner":this.id}).toArray()
+	}
 }
 
 class Quest {
@@ -191,11 +194,7 @@ class WaitingFish {
 		}
 	}
 	async available(){
-		if (this.cooldown+60000*2 > Date.now()){
-			return true
-		}else{
-			return false
-		}
+		return this.cooldown+60000*2 > Date.now()
 	}
 	async destroy(){
 		waitingFishList.deleteOne({"_id":this.id})
@@ -228,7 +227,7 @@ class WaitingFish {
 			await waitingFishList.deleteOne({"_id":this.id})
 			var pecheMessage = await this.verifyIfMessageExist()
 			//console.log(pecheMessage)
-			if (pecheMessage != false){
+			if (pecheMessage){
 				var firstEmbed = embedTable.pecheFish.launch
 				firstEmbed.description = firstEmbed.description.replace("<user>",player.tag)
 				await pecheMessage.edit({"embed":firstEmbed})
@@ -319,6 +318,7 @@ class Server {
 		if (this.fishChannel && client.channels.cache.get(this.fishChannel)){
 			guildCooldown[this.id] = Date.now()
 			var randomFish = getRandomFish()
+			console.log(randomFish)
 			var thisEmbed = JSON.parse(JSON.stringify(embedTable.waitingFish.in_water))
 			thisEmbed.description = thisEmbed.description.replace("<size>",fishSizeTable[randomFish.size])
 			var preEmbed = JSON.parse(JSON.stringify(embedTable.waitingFish.pre_peche))
@@ -405,7 +405,7 @@ module.exports = {
 	guildCooldown : function(){
 		return guildCooldown	
 	},
-	ClassInit : function(c,fT,pL,fPL,wFL,sL,bFL,qL){
+	ClassInit : function(c,fT,pL,fPL,wFL,sL,bFL,qL,bL){
 		guildCooldown = {"test":1}
 		client = c
 		fishTable = fT
@@ -415,6 +415,7 @@ module.exports = {
 		waitingFishList = wFL
 		bibliothequeFishList = bFL
 		questList = qL
+		banniereList = bL
 		functionsInit(fT)
 	},
 	BibliothequeFish : BibliothequeFish,

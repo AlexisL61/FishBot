@@ -10,7 +10,7 @@ var {generateAquarium,canvasInit,generateBibliotheque,generateProfil} = require(
 
 var embedTable = JSON.parse(fs.readFileSync("./embeds.json"))
 const client = new Discord.Client({ partials: ['MESSAGE', 'REACTION'], ws: { intents: Intents.ALL }  });
-var fishTable,playerList,fishPecheList,serverList,waitingFishList,bibliothequeFishList,questList
+var fishTable,playerList,fishPecheList,serverList,waitingFishList,bibliothequeFishList,questList,banniereList
 
 var messageReact = {}
 client.on('messageReactionAdd', async (reaction, user) => {
@@ -42,7 +42,7 @@ client.on("ready",async function(){
 	//console.log("READY")
 	 client.user.setActivity("un jour je serai le meilleur pécheur")
    canvasInit(client)
-	fishTable = fs.readFileSync("./json-folder/fish-table.json")
+	fishTable = JSON.parse(fs.readFileSync("./json-folder/fish-table.json"))
 	playerList = mclient.db("MainDatabase").collection("Players");
 	fishPecheList = mclient.db("MainDatabase").collection("FishPeche");
 	waitingFishList = mclient.db("MainDatabase").collection("FishWaiting");

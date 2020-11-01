@@ -66,6 +66,8 @@ module.exports={
 		for (var y = 0; y<8;y++){
 			for (var x=0;x<10;x++){
 				if (biblio.find(fish=>fish.data.id == fishList[x+y*10].id)){
+					var thisFish = biblio.find(fish=>fish.data.id == fishList[x+y*10].id)
+					console.log(thisFish)
 					var fishImg
 					if (!cache.fishImageCache[thisFish.data.image]){
 						fishImg = await Canvas.loadImage(thisFish.data.image)
@@ -73,7 +75,7 @@ module.exports={
 					}else{
 						fishImg = cache.fishImageCache[thisFish.data.image]
 					}
-					ctx.drawImage(fishImage, x*100+20,y*100+20,60,60);
+					ctx.drawImage(fishImg, x*100+20,y*100+20,60,60);
 				}else{
 					ctx.textAlign = "center"
 					ctx.font = '60px Roboto ';
@@ -91,19 +93,28 @@ module.exports={
 		const ctx = canvas.getContext('2d');
 		console.log(user.displayAvatarURL())
 		var backgroundImg =  await Canvas.loadImage("https://wallpapercave.com/wp/wp4462550.png")
-		ctx.drawImage(backgroundImg,0,0,800,449)
+		ctx.drawImage(backgroundImg,200,0,600,337)
 		var profileImage = await Canvas.loadImage(user.displayAvatarURL({"format":"png"}))
 		ctx.drawImage(profileImage,0,0,200,200)
+		ctx.font = '50px Roboto ';	
+		ctx.fillStyle = '#000000';	
+		ctx.fillText(user.username, 224, 51)
 		ctx.font = '50px Roboto ';	
 		ctx.fillStyle = '#ffffff';	
 		ctx.fillText(user.username, 220, 50)
 		var coinImage = await Canvas.loadImage("https://cdn.discordapp.com/attachments/760153787632713748/771444541592436736/Coin.svg")
 		ctx.drawImage(coinImage,220,75,50,50)
 		ctx.font = '50px Roboto ';	
+		ctx.fillStyle = '#000000';	
+		ctx.fillText(player.money, 284, 115)
+		ctx.font = '50px Roboto ';	
 		ctx.fillStyle = '#ffac33';	
 		ctx.fillText(player.money, 280, 115)
 		var ticketImage = await Canvas.loadImage("https://cdn.discordapp.com/attachments/760153787632713748/772155768799232000/Ticket.svg")
 		ctx.drawImage(ticketImage,220,140,50,50)
+		ctx.font = '50px Roboto ';	
+		ctx.fillStyle = '#000000';	
+		ctx.fillText(player.tickets, 284, 180)
 		ctx.font = '50px Roboto ';	
 		ctx.fillStyle = '#d2364d';	
 		ctx.fillText(player.tickets, 280, 180)

@@ -3,11 +3,25 @@
 		"rarity":"common",
 		"name":{"fr":"Défaut","en":"Default"},
 		"color_available":[
-			"default"
+			"black",
+			"turquoise",
+			"red",
+			"purple",
+			"orange",
+			"white",
+			"green",
+			"blue"
 		],
 		"image_size":{"width":800,"height":449},
 		"color":{
-			"default":"https://wallpapercave.com/wp/wp4462550.png"
+			"black":"https://wallpapercave.com/wp/wp4462550.png",
+			"turquoise":"https://cdn.discordapp.com/attachments/760153787632713748/772425081082478592/turquoise.png",
+			"red":"https://cdn.discordapp.com/attachments/760153787632713748/772425062300385290/red.png",
+			"purple":"https://cdn.discordapp.com/attachments/760153787632713748/772425044176535592/purple.png",
+			"orange":"https://cdn.discordapp.com/attachments/760153787632713748/772425027421208586/orange.png",
+			"white":"https://cdn.discordapp.com/attachments/760153787632713748/772425014209150977/grey.png",
+			"green":"https://cdn.discordapp.com/attachments/760153787632713748/772424994613231626/green.png",
+			"blue":"https://cdn.discordapp.com/attachments/760153787632713748/772424986635534366/blue.png"
 		}
 	}
 }
