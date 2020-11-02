@@ -49,9 +49,10 @@ client.on("ready",async function(){
 	serverList = mclient.db("MainDatabase").collection("Servers");
 	bibliothequeFishList = mclient.db("MainDatabase").collection("Bibliotheque");
 	questList = mclient.db("MainDatabase").collection("Quest");
+	banniereList = mclient.db("MainDatabase").collection("Banniere");
 	////console.log(fishList.find({"owner":this.id}).toArray())
 	//console.log(JSON.stringify(fishTable))
-	ClassInit(client,fishTable,playerList,fishPecheList,waitingFishList,serverList,bibliothequeFishList,questList)
+	ClassInit(client,fishTable,playerList,fishPecheList,waitingFishList,serverList,bibliothequeFishList,questList,banniereList)
 
 	
 	setInterval(async function(){
@@ -77,6 +78,76 @@ client.on("message",async function(message){
 		var thisServer = new Server(message.guild.id)
 		await thisServer.init()
 		var fishAdded = await thisServer.addFish()
+	}
+	if (message.content.startsWith("f!banniere")){
+		var messageSent = await message.channel.send({embed:embedTable.banniere.loading})
+		var thisPlayer =new Player(message.author.id)
+		await thisPlayer.init()
+		var bannieres = await thisPlayer.getBanniereString(true)
+		console.log(bannieres)
+		var thisEmbed = JSON.parse(JSON.stringify(embedTable.banniere.loaded))
+		thisEmbed.description = thisEmbed.description.replace("<banniere>",bannieres.string)
+		messageSent.edit({"embed":thisEmbed})
+
+		await messageSent.react("✅")
+		await messageSent.react("🪙")
+		const filterR = (r,u)=>(r.emoji.name == "✅"||r.emoji.name == "🪙") && u.id == message.author.id
+		var reaction = await messageSent.awaitReactions(filterR,{"max":1})
+		bannieres = await thisPlayer.getBanniereString(true)
+		if (reaction.first().emoji.name == "✅"){			
+			thisEmbed = JSON.parse(JSON.stringify(embedTable.banniere.equip))
+			thisEmbed.description = thisEmbed.description.replace("<banniere>",bannieres.string)
+			messageSent.edit({"embed":thisEmbed})
+
+			const filterM = (m)=>m.author.id == message.author.id
+			var message = await messageSent.channel.awaitMessages(filterM,{"max":1})
+			var playerInv = await thisPlayer.getBanniere()
+			message = message.first()
+			if (parseInt(message.content) && playerInv[parseInt(message.content)-1]){
+				var thisBanniere = playerInv[parseInt(message.content)-1]
+				thisBanniere.equip()
+				var successEquip = JSON.parse(JSON.stringify(embedTable.banniere.equip_success))
+				successEquip.description = successEquip.description.replace("<banniereEquip>",thisBanniere.data.name.fr)
+				message.channel.send({"embed":successEquip})
+			}
+			
+		}else{
+			thisEmbed = JSON.parse(JSON.stringify(embedTable.banniere.sell))
+			thisEmbed.description = thisEmbed.description.replace("<banniere>",bannieres.string)
+			messageSent.edit({"embed":thisEmbed})
+
+			const filterM = (m)=>m.author.id == message.author.id
+			var messages = await messageSent.channel.awaitMessages(filterM,{"max":1})
+			var thisMessage = messages.first()
+			var numbers = thisMessage.content.split(",")
+			var banniereSold = []
+			var coinsGet = 0
+			for (var i in numbers){
+				if (parseInt(numbers[i]) && bannieres.table[parseInt(numbers[i])-1]){
+					var thisBanniere = bannieres.table[parseInt(numbers[i])-1]
+					if (thisBanniere.tableData[0]){
+						var saleResult = await thisBanniere.tableData[0].sell()
+						if (saleResult){
+							banniereSold.push(thisBanniere.data)
+							coinsGet+=parseInt(thisBanniere.data.data.price)
+							thisBanniere.tableData.splice(0,1)
+						}
+					}
+				}
+			}
+			var banniereSoldString = ""
+			for (var i in banniereSold){
+				banniereSoldString+=banniereSold[i].data.name.fr+" "+banniereSold[i].color
+				if (i+1 == banniereSold.length){
+					banniereSoldString+="."
+				}else{
+					banniereSoldString+=", "
+				}
+			}
+			var successSold = JSON.parse(JSON.stringify(embedTable.banniere.sell_success))
+			successSold.description = successSold.description.replace("<banniereSold>",banniereSoldString).replace("<moneyGot>",coinsGet)
+			message.channel.send({"embed":successSold})
+		}
 	}
 	if (message.content.startsWith("f!quest")){
 		var messageSent = await message.channel.send({embed:embedTable.quest.loading})

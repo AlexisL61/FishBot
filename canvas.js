@@ -1,10 +1,13 @@
 const Canvas = require("canvas");
 var client
+const fs = require("fs");
 async function hebergImg(canvas){
 	var messageSent = await client.channels.cache.get("770686407043579915").send({"files":[canvas.toBuffer()]})
   return messageSent.attachments.first().url
 }
 var cache = {"fishImageCache":{}}
+var banniereInfo = JSON.parse(fs.readFileSync("./json-folder/banniere/banniere-data.json"))
+
 
 module.exports={
 	canvasInit: function(c){

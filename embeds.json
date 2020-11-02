@@ -182,5 +182,34 @@
 			"title":"Erreur",
 			"description":"Attention! Un petit problème est survenu... Il semblerait que votre quête n'est jamais existé... Bizarre non? Pourquoi pas rééssayer?"
 		}
+	},
+	"banniere":{
+		"loading":{
+			"title":"Vos bannières",
+			"description":"Chargement de vos bannières...",
+			"image":{
+				"url":"https://cdn.discordapp.com/attachments/760153787632713748/770738506208903238/loadingGif.gif"
+			}
+		},
+		"loaded":{
+			"title":"Vos bannières",
+			"description":"Voici vos bannières:\n\n<banniere>"	
+		},
+		"sell":{
+			"title":"Vente de bannières",
+			"description":"Pour vendre une bannière, envoyez dans votre prochain message le nombre correspondant à la bannière que vous voulez vendre:\n\n<banniere>"	
+		},
+		"equip":{
+			"title":"Equiper une bannière",
+			"description":"Pour équiper une bannière, envoyez dans votre prochain message le nombre correspondant à la bannière que vous souhaitez équiper:\n\n<banniere>"	
+		},
+		"sell_success":{
+			"title":"Vente de bannières",
+			"description":"Vous avez bien vendu ces bannières: <banniereSold>\n\nVous avez donc gagné un total de <moneyGot>🪙"
+		},
+		"equip_success":{
+			"title":"Bannière équipée",
+			"description":"Vous avez bien équipée cette bannière: <banniereEquip>"
+		}
 	}
 }

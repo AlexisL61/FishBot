@@ -1,0 +1,26 @@
+{
+	"black":{
+		"name":"Noir"
+	},
+	"turquoise":{
+		"name":"Turquoire"
+	},
+	"red":{
+		"name":"Rouge"
+	},
+	"orange":{
+		"name":"Orange"
+	},
+	"blue":{
+		"name":"Bleu"
+	},
+	"green":{
+		"name":"Vert"
+	},
+	"white":{
+		"name":"Blanc"
+	},
+	"purple":{
+		"name":"Violet"
+	}
+}

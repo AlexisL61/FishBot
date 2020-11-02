@@ -1,6 +1,6 @@
 var fishTable,playerList,fishPecheList,serverList,waitingFishList,client,bibliothequeFishList,questList,banniereList
 
-var playerDataAvailable = [{"name":"id"},{"name":"money"},{"name":"tickets"}]
+var playerDataAvailable = [{"name":"id"},{"name":"money"},{"name":"tickets"},{"name":"banniere"}]
 
 var guildCooldown = {}
 
@@ -12,12 +12,15 @@ var embedTable = JSON.parse(fs.readFileSync("./embeds.json"))
 var fishSizeTable = JSON.parse(fs.readFileSync("./json-folder/fish-size.json"))
 var questInfo = JSON.parse(fs.readFileSync("./json-folder/quest/quest-info.json"))
 var questAvailable = JSON.parse(fs.readFileSync("./json-folder/quest/quest-available.json"))
+var banniereInfo = JSON.parse(fs.readFileSync("./json-folder/banniere/banniere-data.json"))
+var colorInfo = JSON.parse(fs.readFileSync("./json-folder/color/color-info.json"))
 
 class Player{
 	constructor(id){
 		this.id = id
 		this.money = 0
 		this.tickets = 0
+		this.banniere = "default"
 	}
 	async init(){
 		var playerData = await playerList.find({"id":this.id}).toArray();
@@ -26,6 +29,9 @@ class Player{
 			this.money = parseInt(playerData.money)
 			if (playerData.tickets){
 				this.tickets = playerData.tickets
+			}
+			if (playerData.banniere){
+				this.banniere = playerData.banniere
 			}
 		}
 	}
@@ -121,6 +127,92 @@ class Player{
 	}
 	async getBanniere(){
 		var bannieres = await banniereList.find({"owner":this.id}).toArray()
+		for (var i in bannieres){
+			bannieres[i].owner = this
+			var thisBanniere = new Banniere(bannieres[i])
+			bannieres[i] = thisBanniere
+		}
+		var defaultBanniere = new Banniere({owner:this,_id:"default"})
+		console.log(defaultBanniere)
+		bannieres.splice(0,0,defaultBanniere)
+		return bannieres
+	}
+	async getBanniereString(ifNumber){
+		var bannieres = await this.getBanniere()
+		var bannieresTable = []
+		console.log(bannieres)
+		for (var i in bannieres){
+			console.log(bannieres[i])
+			if (bannieresTable.find(object=> object.data.banniereId == bannieres[i].banniereId && object.data.color == bannieres[i].color)){
+				bannieresTable.find(object=> object.data.banniereId == bannieres[i].banniereId && object.data.color == bannieres[i].color).number ++
+				bannieresTable.find(object=> object.data.banniereId == bannieres[i].banniereId && object.data.color == bannieres[i].color).tableData.push(bannieres[i])
+			}else{
+				bannieresTable.push({"number":1,"data":bannieres[i],tableData:[bannieres[i]]})
+			}
+		}
+		var stringToSend = ""
+		for (var i in bannieresTable){
+			if (ifNumber){
+				stringToSend+=(parseInt(i)+1)+". "
+			}
+			console.log(bannieresTable[i].data.data)
+			stringToSend+="**"+bannieresTable[i].data.data.name.fr+"** "+colorInfo[bannieresTable[i].data.color].name+" x"+bannieresTable[i].number+"\n"
+		}
+		return {"string":stringToSend,"table":bannieresTable}
+	}
+}
+
+class Banniere {
+	constructor (data){
+		this.id = data._id
+		this.owner = data.owner
+		if (this.id != "default"){
+			this.banniereId = data.banniereId
+			this.color = data.color
+			this.data = banniereInfo[data.banniereId]
+		}else{
+			this.banniereId = "default"
+			this.color = "black"
+			this.data = banniereInfo.default
+		}
+	}
+	async exist(){
+		if (this.id == "default"){
+			return true
+		}
+		var banniereExist = await banniereList.find({"_id":this.id}).toArray()
+		if (banniereExist.length == 1){
+			return true
+		}else{
+			return false
+		}
+	}
+	async equip(){
+		if (this.exist()){
+			this.owner.banniere = this.id
+			await this.owner.save()
+			return true
+		}
+		return false
+	}
+	async sell(){
+		if (this.id == "default"){
+			return false
+		}
+		if (this.exist()){
+			this.owner.money += parseInt(this.data.price)
+			await this.owner.save()
+			await this.destroy()
+			return true
+		}
+		return false
+	}
+	async destroy(){
+		if (this.id =="default"){
+			return false
+		}
+		await banniereList.deleteOne({"_id":this.id})
+		return true
 	}
 }
 

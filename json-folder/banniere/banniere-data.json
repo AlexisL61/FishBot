@@ -1,6 +1,7 @@
 {
 	"default":{
 		"rarity":"common",
+		"price":5000,
 		"name":{"fr":"Défaut","en":"Default"},
 		"color_available":[
 			"black",
