@@ -1,7 +1,6 @@
 # Fish bot
 
-> "Un jour je serai le meilleur pécheur, j'attraperai sans répit.
-> Sur la mer, sur les rivières et dans les lacs aussi"
+> "Un jour je serai le meilleur pécheur...
 
 ## Description
 
